@@ -8,7 +8,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 
-const Validation_P = () => {
+const Validation_p = () => {
   const email = useInput('', { isEmpty: true, minLength: 3, isEmail: true })
   const password = useInput('', { isEmpty: true, minLength: 5, })
 
@@ -17,7 +17,7 @@ const Validation_P = () => {
   return (
     
     <Container maxWidth="sm">
-      
+      <Headerx/>
       <Box mt={4}>
       
         <div style={{ margin: "20px", maxWidth: "400px" }}>
@@ -82,4 +82,4 @@ const Validation_P = () => {
   )
 }
 
-export default Validation_P;
+export default Validation_p;
