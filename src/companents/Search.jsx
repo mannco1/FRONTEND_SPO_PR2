@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
-import Drawer from '@mui/material/Drawer';
+
 import Checkbox from '@mui/material/Checkbox';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
+import citiesData  from'../data.json'
 
 const CitySearch = () => {
   // Состояния для хранения данных о городах и выбранных фильтрах
@@ -21,14 +22,9 @@ const CitySearch = () => {
     // Например:
     // fetchCities().then(data => setCities(data));
     // Здесь cities должны быть массивом объектов с информацией о городах
-    const mockCities = [
-      { id: 1, name: 'City 1', country: 'Country A', region: 'Region 1' },
-      { id: 2, name: 'City 2', country: 'Country B', region: 'Region 2' },
-      { id: 3, name: 'City 3', country: 'Country A', region: 'Region 1' },
-      // Другие города...
-    ];
-    setCities(mockCities);
-    setFilteredCities(mockCities); // Изначально отображаем все города
+    
+    setCities(citiesData);
+    setFilteredCities(citiesData); // Изначально отображаем все города
   }, []);
 
   // Функция для фильтрации городов на основе выбранных фильтров
@@ -59,8 +55,8 @@ const CitySearch = () => {
   return (
     <div>
       
-      <button onClick={() => setDrawerOpen(true)}>Open Filter Drawer</button>
-      <Drawer
+      
+      <div
         anchor="left"
         open={drawerOpen}
         onClose={() => setDrawerOpen(false)}
@@ -74,7 +70,7 @@ const CitySearch = () => {
             />
           ))}
         </FormGroup>
-      </Drawer>
+      </div>
       {/* Форма с фильтрами */}
       <form>
         <label>

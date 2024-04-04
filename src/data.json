@@ -1,0 +1,39 @@
+[
+    {
+      "id": 1,
+      "name": "City 1",
+      "country": "Country A",
+      "region": "Region 1"
+    },
+    {
+      "id": 2,
+      "name": "City 2",
+      "country": "Country B",
+      "region": "Region 2"
+    },
+    {
+      "id": 3,
+      "name": "City 3",
+      "country": "Country C",
+      "region": "Region 1"
+    },
+    {
+      "id": 4,
+      "name": "City 4",
+      "country": "Country A",
+      "region": "Region 2"
+    },
+    {
+      "id": 5,
+      "name": "City 5",
+      "country": "Country B",
+      "region": "Region 1"
+    },
+    {
+      "id": 6,
+      "name": "City 6",
+      "country": "Country C",
+      "region": "Region 2"
+    }
+  ]
+  
