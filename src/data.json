@@ -3,37 +3,43 @@
       "id": 1,
       "name": "City 1",
       "country": "Country A",
-      "region": "Region 1"
+      "work": "Region 1",
+      "amount": "14000"
     },
     {
       "id": 2,
       "name": "City 2",
       "country": "Country B",
-      "region": "Region 2"
+      "work": "Region 2",
+      "amount": "14000"
     },
     {
       "id": 3,
       "name": "City 3",
       "country": "Country C",
-      "region": "Region 1"
+      "work": "Region 1",
+      "amount": "14000"
     },
     {
       "id": 4,
       "name": "City 4",
-      "country": "Country A",
-      "region": "Region 2"
+      "country": "Country D",
+      "work": "Region 2",
+      "amount": "14000"
     },
     {
       "id": 5,
       "name": "City 5",
-      "country": "Country B",
-      "region": "Region 1"
+      "country": "Country F",
+      "work": "Region 1",
+      "amount": "14000"
     },
     {
       "id": 6,
       "name": "City 6",
-      "country": "Country C",
-      "region": "Region 2"
+      "country": "Country G",
+      "work": "Region 2",
+      "amount": "84000"
     }
   ]
   
