@@ -1,33 +1,40 @@
 import React, { useState, useEffect } from 'react';
-
-import Checkbox from '@mui/material/Checkbox';
-import FormGroup from '@mui/material/FormGroup';
-import FormControlLabel from '@mui/material/FormControlLabel';
-import citiesData  from'../data.json'
+import citiesData from '../data.json';
+import { RadioGroup, FormControlLabel, Radio } from '@mui/material';
 
 const CitySearch = () => {
   const [cities, setCities] = useState([]);
-  const [countryFilter, setCountryFilter] = useState('');
-  const [workFilter, setRegionFilter] = useState('');
+  const [cityFilter, setCityFilter] = useState('');
+  const [workTime, setWorkTime] = useState('');
+  const [workTypeFilter, setWorkTypeFilter] = useState('');
   const [minAmount, setMinAmount] = useState('');
   const [maxAmount, setMaxAmount] = useState('');
   const [filteredCities, setFilteredCities] = useState([]);
-  const [drawerOpen, setDrawerOpen] = useState(false);
   const [selectedFilters, setSelectedFilters] = useState([]);
+
+  // Состояния для первого набора кнопок
+  const [jobType, setJobType] = useState(null); // Выбранная работа
+
+  // Состояния для второго набора кнопок
+  const [employmentType, setEmploymentType] = useState(null); // Выбранный тип занятости
 
   useEffect(() => {
     setCities(citiesData);
-    setFilteredCities(citiesData); 
+    setFilteredCities(citiesData);
   }, []);
 
   useEffect(() => {
     let filtered = cities;
-    if (countryFilter !== '') {
-      filtered = filtered.filter(city => city.country === countryFilter);
+    if (cityFilter !== '') {
+      filtered = filtered.filter(city => city.name === cityFilter);
     }
-    if (workFilter !== '') {
-      filtered = filtered.filter(city => city.region === workFilter);
+    if (workTime !== '') {
+      filtered = filtered.filter(city => city.time === workTime);
     }
+    if (workTypeFilter !== '') {
+      filtered = filtered.filter(city => city.work === workTypeFilter);
+    }
+    
     if (selectedFilters.length > 0) {
       filtered = filtered.filter(city => selectedFilters.includes(city.country));
     }
@@ -38,71 +45,86 @@ const CitySearch = () => {
       });
     }
     setFilteredCities(filtered);
-  }, [countryFilter, workFilter, minAmount, maxAmount, cities, selectedFilters]);
+  }, [workTime, workTypeFilter, minAmount, maxAmount, cities, selectedFilters,cityFilter]);
 
-  const handleFilterChange = (event) => {
-    const { name, checked } = event.target;
-    if (checked) {
-      setSelectedFilters(prev => [...prev, name]);
-    } else {
-      setSelectedFilters(prev => prev.filter(filter => filter !== name));
-    }
+  // Функции обработки клика для первого набора кнопок
+  const handleJobTypeClick = (type) => {
+    setJobType(type === jobType ? null : type); // Снимаем выбор, если уже выбран
+    setWorkTypeFilter(type === jobType ? '' : type); // Применяем фильтр работы
+  };
+
+  // Функции обработки клика для второго набора кнопок
+  const handleEmploymentTypeClick = (type) => {
+    setEmploymentType(type === employmentType ? null : type); 
+    setWorkTime(type === employmentType ? '' : type); 
   };
 
   return (
     <div>
-      <div
-        anchor="left"
-        open={drawerOpen}
-        onClose={() => setDrawerOpen(false)}
-      >
-        <FormGroup>
-          {cities.map(city => (
-            <FormControlLabel
-              key={city.country}
-              control={<Checkbox checked={selectedFilters.includes(city.country)} onChange={handleFilterChange} name={city.country} />}
-              label={city.country}
-            />
-          ))}
-        </FormGroup>
-      </div>
+      <h2>Выберете параметры:</h2>
+      {/* Первый набор Radio Group кнопок */}
+      <RadioGroup value={jobType} onChange={(e) => handleJobTypeClick(e.target.value)}>
+          <FormControlLabel value="courier" control={<Radio />} label="Courier" />
+          <FormControlLabel value="seller" control={<Radio />} label="Seller" />
+          <FormControlLabel value="warehouse" control={<Radio />} label="Warehouse" />
+        </RadioGroup>
+
+       
+
       <form>
-        <label>
-          Country:
+      
+        {/* <label>
+          Тип вакансии:
           <input
             type="text"
-            value={countryFilter}
-            onChange={e => setCountryFilter(e.target.value)}
+            value={workTypeFilter}
+            onChange={e => setWorkTypeFilter(e.target.value)}
           />
         </label>
         <label>
-          Region:
+          Тип занятости:
           <input
             type="text"
-            value={workFilter}
-            onChange={e => setRegionFilter(e.target.value)}
+            value={workTime}
+            onChange={e => setWorkTime(e.target.value)}
           />
-        </label>
-        <label>
-          Min Amount:
+        </label> */}
+      <div>
+          <label>
+            От:
+            <input
+              type="number"
+              value={minAmount}
+              onChange={e => setMinAmount(e.target.value)}
+            />
+          </label>
+          <label>
+            До:
+            <input
+              type="number"
+              value={maxAmount}
+              onChange={e => setMaxAmount(e.target.value)}
+            />
+          </label>
+      </div>
+ {/* Второй набор Radio Group кнопок */}
+ <RadioGroup value={employmentType} onChange={(e) => handleEmploymentTypeClick(e.target.value)}>
+          <FormControlLabel value="full-time" control={<Radio />} label="Full-time" />
+          <FormControlLabel value="part-time" control={<Radio />} label="Part-time" />
+          <FormControlLabel value="volunteer" control={<Radio />} label="Volunteer" />
+        </RadioGroup>
+      <label>
+          Город:
           <input
-            type="number"
-            value={minAmount}
-            onChange={e => setMinAmount(e.target.value)}
-          />
-        </label>
-        <label>
-          Max Amount:
-          <input
-            type="number"
-            value={maxAmount}
-            onChange={e => setMaxAmount(e.target.value)}
+            type="text"
+            value={cityFilter}
+            onChange={e => setCityFilter(e.target.value)}
           />
         </label>
       </form>
       <ul>
         {filteredCities.map(city => (
-          <li key={city.id}>{city.name} - {city.country}, {city.region}, Amount: {city.amount}</li>
+          <li key={city.id}>{city.name} - {city.work}, {city.time},{city.age14} Amount: {city.amount}</li>
         ))}
       </ul>
     </div>

@@ -1,44 +1,56 @@
 [
     {
       "id": 1,
-      "name": "City 1",
+      "name": "Moscow",
       "country": "Country A",
-      "work": "Region 1",
+      "work": "warehouse",
+      "age14":"Yes",
+      "time":"full-time",
       "amount": "14000"
     },
     {
       "id": 2,
-      "name": "City 2",
+      "name": "New-York",
       "country": "Country B",
-      "work": "Region 2",
+      "work": "seller",
+      "age14":"Yes",
+      "time":"part-time",
       "amount": "14000"
     },
     {
       "id": 3,
-      "name": "City 3",
+      "name": "Berlin",
       "country": "Country C",
-      "work": "Region 1",
+      "work": "seller",
+      "age14":"Yes",
+      "time":"volunteer",
       "amount": "14000"
     },
     {
       "id": 4,
-      "name": "City 4",
+      "name": "Paris",
       "country": "Country D",
-      "work": "Region 2",
+      "work": "courier",
+      "age14":"No",
+      "time":"volunteer",
       "amount": "14000"
     },
     {
       "id": 5,
-      "name": "City 5",
+      "name": "Kiev",
       "country": "Country F",
-      "work": "Region 1",
+      "work": "courier",
+      "age14":"Yes",
+      "time":"volunteer",
       "amount": "14000"
     },
     {
       "id": 6,
-      "name": "City 6",
+      "name": "Vena",
       "country": "Country G",
-      "work": "Region 2",
+      "work": "seller",
+      "age14":"No",
+      "time":"volunteer",
       "amount": "84000"
     }
   ]
