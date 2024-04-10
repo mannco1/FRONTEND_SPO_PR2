@@ -7,6 +7,7 @@ import Validation_p from './Validation_p';
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Home from './Home';
+import Profile from './Profile';
 
 
 
@@ -23,7 +24,7 @@ const App = () => {
       
       <Routes>
         <Route exact path="/" element={<Home/>} />
-        <Route path="/val" element={<Validation_p/>} />
+        <Route path="/val" element={<Profile/>} />
         
       </Routes>
     
