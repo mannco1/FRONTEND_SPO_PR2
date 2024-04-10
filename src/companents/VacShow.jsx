@@ -11,7 +11,7 @@ const VacShow = () => {
   return (
     <div>
       <h1>Vacancies</h1>
-      <VacAdd onAddVacancy={handleAddVacancy} />
+      {/* <VacAdd onAddVacancy={handleAddVacancy} /> */}
       {/* Отображение существующих вакансий */}
       <ul>
         {vacancies.map(vacancy => (

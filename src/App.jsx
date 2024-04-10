@@ -24,7 +24,7 @@ const App = () => {
       
       <Routes>
         <Route exact path="/" element={<Home/>} />
-        <Route path="/val" element={<Profile/>} />
+        <Route path="/profile" element={<Profile/>} />
         
       </Routes>
     

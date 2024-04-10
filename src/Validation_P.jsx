@@ -17,7 +17,7 @@ const Validation_p = () => {
   return (
     
     <Container maxWidth="sm">
-      <Headerx/>
+      
       <Box mt={4}>
       
         <div style={{ margin: "20px", maxWidth: "400px" }}>
