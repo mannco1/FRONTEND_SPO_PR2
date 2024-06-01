@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const VacancyForm = ({ onAddVacancy }) => {
   const [newVacancy, setNewVacancy] = useState({
@@ -34,50 +35,80 @@ const VacancyForm = ({ onAddVacancy }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        name="name"
-        placeholder="Name"
-        value={newVacancy.name}
-        onChange={handleChange}
-      />
-      <input
-        type="text"
-        name="country"
-        placeholder="Country"
-        value={newVacancy.country}
-        onChange={handleChange}
-      />
-      <input
-        type="text"
-        name="work"
-        placeholder="Work"
-        value={newVacancy.work}
-        onChange={handleChange}
-      />
-      <input
-        type="text"
-        name="age14"
-        placeholder="Age 14"
-        value={newVacancy.age14}
-        onChange={handleChange}
-      />
-      <input
-        type="text"
-        name="time"
-        placeholder="Time"
-        value={newVacancy.time}
-        onChange={handleChange}
-      />
-      <input
-        type="text"
-        name="amount"
-        placeholder="Amount"
-        value={newVacancy.amount}
-        onChange={handleChange}
-      />
-      <button type="submit">Add Vacancy</button>
+    <form onSubmit={handleSubmit} className="p-4 border rounded">
+      <div className="mb-3">
+        <label htmlFor="name" className="form-label">Name</label>
+        <input
+          type="text"
+          className="form-control"
+          id="name"
+          name="name"
+          placeholder="Name"
+          value={newVacancy.name}
+          onChange={handleChange}
+        />
+      </div>
+      <div className="mb-3">
+        <label htmlFor="country" className="form-label">Country</label>
+        <input
+          type="text"
+          className="form-control"
+          id="country"
+          name="country"
+          placeholder="Country"
+          value={newVacancy.country}
+          onChange={handleChange}
+        />
+      </div>
+      <div className="mb-3">
+        <label htmlFor="work" className="form-label">Work</label>
+        <input
+          type="text"
+          className="form-control"
+          id="work"
+          name="work"
+          placeholder="Work"
+          value={newVacancy.work}
+          onChange={handleChange}
+        />
+      </div>
+      <div className="mb-3">
+        <label htmlFor="age14" className="form-label">Age 14</label>
+        <input
+          type="text"
+          className="form-control"
+          id="age14"
+          name="age14"
+          placeholder="Age 14"
+          value={newVacancy.age14}
+          onChange={handleChange}
+        />
+      </div>
+      <div className="mb-3">
+        <label htmlFor="time" className="form-label">Time</label>
+        <input
+          type="text"
+          className="form-control"
+          id="time"
+          name="time"
+          placeholder="Time"
+          value={newVacancy.time}
+          onChange={handleChange}
+        />
+      </div>
+      <div className="mb-3">
+        <label htmlFor="amount" className="form-label">Amount</label>
+        <input
+          type="text"
+          className="form-control"
+          id="amount"
+          name="amount"
+          placeholder="Amount"
+          value={newVacancy.amount}
+          onChange={handleChange}
+        />
+      </div>
+      <button type="submit" className="btn btn-primary">Add Vacancy</button>
     </form>
   );
 };

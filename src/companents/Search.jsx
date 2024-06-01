@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import citiesData from '../data.json';
-import { RadioGroup, FormControlLabel, Radio } from '@mui/material';
+import { RadioGroup, FormControlLabel, Radio, Container, Typography, TextField, Box, Button, FormControl } from '@mui/material';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const CitySearch = () => {
   const [cities, setCities] = useState([]);
@@ -12,11 +13,8 @@ const CitySearch = () => {
   const [filteredCities, setFilteredCities] = useState([]);
   const [selectedFilters, setSelectedFilters] = useState([]);
 
-  // Состояния для первого набора кнопок
-  const [jobType, setJobType] = useState(null); // Выбранная работа
-
-  // Состояния для второго набора кнопок
-  const [employmentType, setEmploymentType] = useState(null); // Выбранный тип занятости
+  const [jobType, setJobType] = useState(null);
+  const [employmentType, setEmploymentType] = useState(null);
 
   useEffect(() => {
     setCities(citiesData);
@@ -45,89 +43,79 @@ const CitySearch = () => {
       });
     }
     setFilteredCities(filtered);
-  }, [workTime, workTypeFilter, minAmount, maxAmount, cities, selectedFilters,cityFilter]);
+  }, [workTime, workTypeFilter, minAmount, maxAmount, cities, selectedFilters, cityFilter]);
 
-  // Функции обработки клика для первого набора кнопок
   const handleJobTypeClick = (type) => {
-    setJobType(type === jobType ? null : type); // Снимаем выбор, если уже выбран
-    setWorkTypeFilter(type === jobType ? '' : type); // Применяем фильтр работы
+    setJobType(type === jobType ? null : type);
+    setWorkTypeFilter(type === jobType ? '' : type);
   };
 
-  // Функции обработки клика для второго набора кнопок
   const handleEmploymentTypeClick = (type) => {
-    setEmploymentType(type === employmentType ? null : type); 
-    setWorkTime(type === employmentType ? '' : type); 
+    setEmploymentType(type === employmentType ? null : type);
+    setWorkTime(type === employmentType ? '' : type);
   };
 
   return (
-    <div>
-      <h2>Выберете параметры:</h2>
-      {/* Первый набор Radio Group кнопок */}
-      <RadioGroup value={jobType} onChange={(e) => handleJobTypeClick(e.target.value)}>
+    <Container className="mt-5">
+      <Typography variant="h4" component="h2" gutterBottom>Выберете параметры:</Typography>
+      
+      <FormControl component="fieldset" className="mb-3">
+        <Typography variant="h6" component="legend">Тип работы:</Typography>
+        <RadioGroup value={jobType} onChange={(e) => handleJobTypeClick(e.target.value)} row>
           <FormControlLabel value="courier" control={<Radio />} label="Courier" />
           <FormControlLabel value="seller" control={<Radio />} label="Seller" />
           <FormControlLabel value="warehouse" control={<Radio />} label="Warehouse" />
         </RadioGroup>
-
-       
-
-      <form>
+      </FormControl>
       
-        {/* <label>
-          Тип вакансии:
-          <input
-            type="text"
-            value={workTypeFilter}
-            onChange={e => setWorkTypeFilter(e.target.value)}
-          />
-        </label>
-        <label>
-          Тип занятости:
-          <input
-            type="text"
-            value={workTime}
-            onChange={e => setWorkTime(e.target.value)}
-          />
-        </label> */}
-      <div>
-          <label>
-            От:
-            <input
-              type="number"
-              value={minAmount}
-              onChange={e => setMinAmount(e.target.value)}
-            />
-          </label>
-          <label>
-            До:
-            <input
-              type="number"
-              value={maxAmount}
-              onChange={e => setMaxAmount(e.target.value)}
-            />
-          </label>
-      </div>
- {/* Второй набор Radio Group кнопок */}
- <RadioGroup value={employmentType} onChange={(e) => handleEmploymentTypeClick(e.target.value)}>
+      <FormControl component="fieldset" className="mb-3">
+        <Typography variant="h6" component="legend">Тип занятости:</Typography>
+        <RadioGroup value={employmentType} onChange={(e) => handleEmploymentTypeClick(e.target.value)} row>
           <FormControlLabel value="full-time" control={<Radio />} label="Full-time" />
           <FormControlLabel value="part-time" control={<Radio />} label="Part-time" />
           <FormControlLabel value="volunteer" control={<Radio />} label="Volunteer" />
         </RadioGroup>
-      <label>
-          Город:
-          <input
+      </FormControl>
+
+      <form>
+        <Box display="flex" justifyContent="space-between" alignItems="center" mb={3}>
+          <TextField
+            label="От"
+            type="number"
+            value={minAmount}
+            onChange={e => setMinAmount(e.target.value)}
+            variant="outlined"
+            className="me-2"
+          />
+          <TextField
+            label="До"
+            type="number"
+            value={maxAmount}
+            onChange={e => setMaxAmount(e.target.value)}
+            variant="outlined"
+            className="ms-2"
+          />
+        </Box>
+        <Box mb={3}>
+          <TextField
+            label="Город"
             type="text"
             value={cityFilter}
             onChange={e => setCityFilter(e.target.value)}
+            variant="outlined"
+            fullWidth
           />
-        </label>
+        </Box>
       </form>
-      <ul>
+      <h1 className="mb-4">Vacancies</h1>
+      <ul className="list-group">
         {filteredCities.map(city => (
-          <li key={city.id}>{city.name} - {city.work}, {city.time},{city.age14} Amount: {city.amount}</li>
+          <li key={city.id} className="list-group-item">
+            {city.name} - {city.work}, {city.time}, {city.age14} Amount: {city.amount}
+          </li>
         ))}
       </ul>
-    </div>
+    </Container>
   );
 };
 

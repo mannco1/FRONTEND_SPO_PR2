@@ -1,7 +1,7 @@
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import Validation_p from './Validation_p';
+import Validation_P from './Validation_P';
 
 
 
